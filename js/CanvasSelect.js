@@ -95,9 +95,6 @@ define(function () {
     CanvasSelect.prototype.destroy = function () {      
         var that = this;
         for ( var key in this ) {
-            if ( typeof this[key] === "function" ) {
-                this[key] = 1;
-            }
             (function () {
                 delete that[key];
             })();
