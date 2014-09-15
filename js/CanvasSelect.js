@@ -66,22 +66,23 @@ define(function () {
         }
         containerEl.classList.add("canvas-select");
 
-
-        var hash = Date.now();
-        _data[hash] = {};
+        // Make an immutable id property
         Object.defineProperty(this, "id", {
             __proto__: null,
             enumerable: false, 
             writable: false,
             configurable: false,
-            value: hash
+            value: Date.now()
         });
+        _data[this.id] = {};
 
         _set.call(this, "containerEl", containerEl);
         _set.call(this, "border", border);
         _set.call(this, "corner", corner);
         _set.call(this, "canvas", canvas);
         _set.call(this, "ctx", ctx);
+
+        return this;
     }
 
     CanvasSelect.prototype.render = function (element) {
