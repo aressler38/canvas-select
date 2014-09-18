@@ -1,12 +1,19 @@
 <!doctype html>
 <html>
 <head>
-<title>test page</title>
+    <title>test page</title>
+    <style>
+        #img {
+            padding: 10px;
+            width: 200px;
+        }
+    </style>
 </head>
 <body>
     <div id="container">
-        <img id="img" src="" />
+        <img id="img" src="test/img/box.jpg" />
     </div>
-    <script src="js/require/require.js" data-main="js/main"></script>
+    <script> var require = { baseUrl: "js" }; </script>
+    <script src="js/require/require.js" data-main="../test/main"></script>
 </body>
 </html>
