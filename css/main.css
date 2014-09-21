@@ -1,0 +1,65 @@
+.canvas-select {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.canvas-select .border {
+    position: absolute;
+    display: inline-block;
+    background: #000;
+    opacity: 0.618;
+    z-index: 1;
+}
+
+.canvas-select .border.top {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+}
+.canvas-select .border.bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+}
+.canvas-select .border.left {
+    bottom: 0;
+    left: 0;
+    top: 0;
+    width: 10px;
+}
+.canvas-select .border.right {
+    bottom: 0;
+    right: 0;
+    top: 0;
+    width: 10px;
+}
+
+.canvas-select .corner {
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    display: inline-block;
+    border-radius: 50%;
+    background: #FFF;
+    z-index: 2;
+    background: radial-gradient(ellipse at center, #FEFFFF 21%, #DDF1F9 44%, #A0D8EF 100%);
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    border: 0.5px solid rgba(123, 130, 230, 0.6);
+}
+
+.canvas-select .corner:hover {
+    cursor: pointer;
+}
+.canvas-select .corner:active {
+    cursor: move;
+}

@@ -16,8 +16,10 @@ define([
 
         window.CanvasSelect = CanvasSelect;
 
+        window.setTimeout(function(){ 
         window.cs = new CanvasSelect(imgEl);
         window.cs.render(containerEl);
+        },1000);
     }
 
 });
