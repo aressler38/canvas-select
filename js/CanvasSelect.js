@@ -148,8 +148,6 @@ define(function () {
             bottomH0 = parseInt(bottomStyle.height);
             leftW0 = parseInt(leftStyle.width);
 
-            console.log(c0.dataset.corner);
-
             currentMoveCallback = cornerMoveCallbacks[c0.dataset.corner];
 
             document.addEventListener("mouseup", _stopMouseDragging);
@@ -167,7 +165,6 @@ define(function () {
         function _mouseDrag (event) {
             var dw = event.clientX - x0;    
             var dh = event.clientY - y0;    
-            console.log(dw, dh);
             currentMoveCallback(dw, dh);
             updatePositions.call(that);
         }
@@ -328,8 +325,49 @@ define(function () {
     };
 
     CanvasSelect.prototype.destroy = function () {      
+        var el = _data[this.id].containerEl;
+        while ( el.lastChild ) {
+            el.removeChild(el.lastChild);
+        }
+        el.parentNode.removeChild(el);
+
+        for ( var thing in _data[this.id] ) {
+            delete _data[this.id][thing];
+        }
         delete _data[this.id];
         return null;
+    };
+
+    CanvasSelect.prototype.getBox = function () {
+        var borders = _data[this.id].borders;
+        var el = _data[this.id].containerEl;
+        var elStyle = window.getComputedStyle(el);
+        var canvas = _data[this.id].canvas;
+
+        var tBStyle = window.getComputedStyle(borders.top);
+        var rBStyle = window.getComputedStyle(borders.right);
+        var bBStyle = window.getComputedStyle(borders.bottom);
+        var lBStyle = window.getComputedStyle(borders.left);
+
+        var width = parseInt(elStyle.width) - parseInt(rBStyle.width);
+        var height = parseInt(elStyle.height) - parseInt(bBStyle.height);
+        var x = parseInt(lBStyle.width);
+        var y = parseInt(tBStyle.height);
+
+        return {
+            x: x,
+            y: y,
+            width: width,
+            height: height,
+            cWidth: canvas.width,
+            cHeight: canvas.height
+        };
+    };
+
+    CanvasSelect.prototype.getImgData = function () {
+        var c = _data[this.id].canvas;
+        var ctx = _data[this.id].ctx;
+        return ctx.getImageData(0, 0, c.width, c.height);
     };
 
     return CanvasSelect;
